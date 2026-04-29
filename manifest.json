@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "URL & Title Keyword Filter",
+  "version": "1.0",
+  "description": "Detect NG keywords and close tab.",
+  "permissions": ["tabs", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "url_keywords.txt",
+        "title_keywords.txt"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
+
