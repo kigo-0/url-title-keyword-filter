@@ -14,3 +14,10 @@ A browser extension that detects prohibited keywords in both the URL and page ti
    - The current page URL against `url_keywords.txt`
    - The page title against `title_keywords.txt`
 3. If any keyword matches, the tab is closed.
+
+## Installation (Developer Mode)
+1. Download or clone this repository.
+2. Open **chrome://extensions/**
+3. Enable **Developer mode**.
+4. Click **Load unpacked**.
+5. Select this project folder.
