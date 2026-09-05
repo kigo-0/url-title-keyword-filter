@@ -18,17 +18,21 @@
 
 const normalize = s => (s || "").toLowerCase();
 
-async function loadTxt(path) {
-    const res = await fetch(chrome.runtime.getURL(path));
-    const text = await res.text();
-    return text
-        .split(/\r?\n/)
-        .map(s => s.trim())
-        .filter(s => s.length > 0);
-}
-
 let URL_KEYWORDS = [];
 let TITLE_KEYWORDS = [];
+
+async function loadKeywords() {
+    const { urlKeywords = [], titleKeywords = [] } =
+        await chrome.storage.local.get(["urlKeywords", "titleKeywords"]);
+    URL_KEYWORDS = urlKeywords;
+    TITLE_KEYWORDS = titleKeywords;
+}
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return;
+    if (changes.urlKeywords) URL_KEYWORDS = changes.urlKeywords.newValue || [];
+    if (changes.titleKeywords) TITLE_KEYWORDS = changes.titleKeywords.newValue || [];
+});
 
 function wildcardToRegExp(pattern) {
     const escaped = pattern
@@ -93,8 +97,7 @@ function waitForTitleAndObserve() {
 waitForTitleAndObserve();
 
 (async () => {
-    URL_KEYWORDS = await loadTxt("url_keywords.txt");
-    TITLE_KEYWORDS = await loadTxt("title_keywords.txt");
+    await loadKeywords();
 
     check();
     window.addEventListener("load", check);

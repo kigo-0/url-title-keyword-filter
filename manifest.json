@@ -3,7 +3,7 @@
   "name": "URL & Title Keyword Filter",
   "version": "1.0",
   "description": "Detect NG keywords and close tab.",
-  "permissions": ["tabs", "scripting"],
+  "permissions": ["tabs", "storage"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background.js"
@@ -15,14 +15,6 @@
       "run_at": "document_start"
     }
   ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "url_keywords.txt",
-        "title_keywords.txt"
-      ],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "options_page": "options.html"
 }
 

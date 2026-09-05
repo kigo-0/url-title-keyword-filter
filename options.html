@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>URL & Title Keyword Filter - 設定</title>
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 16px;
+        max-width: 640px;
+    }
+    h2 {
+        margin-top: 24px;
+    }
+    textarea {
+        width: 100%;
+        height: 200px;
+        box-sizing: border-box;
+        font-family: monospace;
+    }
+    button {
+        margin-top: 12px;
+        padding: 6px 16px;
+    }
+    .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    #status {
+        margin-left: 12px;
+        color: green;
+    }
+</style>
+</head>
+<body>
+    <h1>NGキーワード設定</h1>
+
+    <h2>URLキーワード（1行に1つ、* と ? のワイルドカード可）</h2>
+    <textarea id="urlKeywords"></textarea>
+    <div class="row">
+        <button id="exportUrl">エクスポート</button>
+        <button id="importUrl">インポート</button>
+        <input type="file" id="importUrlFile" accept=".txt" hidden>
+    </div>
+
+    <h2>タイトルキーワード（1行に1つ、* と ? のワイルドカード可）</h2>
+    <textarea id="titleKeywords"></textarea>
+    <div class="row">
+        <button id="exportTitle">エクスポート</button>
+        <button id="importTitle">インポート</button>
+        <input type="file" id="importTitleFile" accept=".txt" hidden>
+    </div>
+
+    <div class="row">
+        <button id="save">保存</button>
+        <span id="status"></span>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>
