@@ -47,7 +47,7 @@ function matchWildcard(str, patterns) {
 }
 
 function check() {
-    if (!URL_KEYWORDS.length || !TITLE_KEYWORDS.length) return;
+    if (!URL_KEYWORDS.length && !TITLE_KEYWORDS.length) return;
 
     const url = normalize(location.href);
     const title = normalize(document.title);
